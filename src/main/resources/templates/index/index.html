@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta charset="UTF-8">
+    <!--样式-->
+    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/global.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/myPagination.css}"/>
+    <link rel="shortcut icon" th:href="@{~/index/img/favicon.ico}"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!--导航栏-->
+<div class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+        <div class="logo-box">
+            <a href="/" class="blog-title ta-c">
+                <img alt="logo" th:src="@{~/index/img/logo.jpg}"/>
+            </a>
+        </div>
+
+        <div class="nb-a-holder" id="home"><a id="active" class="nb-a ta-c" href="/">首页</a></div>
+        <div class="nb-a-holder">
+            <a class="nb-a ta-c" href="category">分类</a>
+        </div>
+        <div class="nb-a-holder"><a class="nb-a ta-c" href="archive">归档</a></div>
+        <div class="nb-a-holder"><a class="nb-a ta-c" href="link">友情链接</a></div>
+
+        <div id="search-nb">
+                <span class="search-s fl">
+                    <label for="search-input"></label><input class="fl" type="text" id="search-input"
+                                                             placeholder="请输入关键字">
+                    <a class="search-icon fl" onclick="" href="search"></a>
+                </span>
+        </div>
+    </div>
+</div>
+<!-- 导航栏结束 -->
+
+<!-- 移动端导航栏 -->
+<div class="mobile-nav">
+    <div class="logo-box">
+        <a href="/" class="blog-title ta-c">
+            <img alt="logo" th:src="@{~/index/img/logo.jpg}"/>
+        </a>
+    </div>
+    <a id="mobile_cate" th:attr="style='background-image:url('+@{~/index/img/cate.svg}+')'"
+       href="javascript:void(0);"
+       onclick="show_nav()"></a>
+</div>
+
+<ul id="nav-m-list" style="display: none;">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="category.html">分类</a></li>
+    <li><a href="archive.html">归档</a></li>
+    <li><a href="link.html">友情链接</a></li>
+    <li>
+            <span class="search-s fl">
+                <label for="search-input-m"></label><input class="fl" type="text" id="search-input-m" placeholder="关键词">
+                <a class="search-icon fl" onclick="" href="search.html"></a>
+            </span>
+    </li>
+</ul>
+<!-- 移动端导航栏结束 -->
+
+
+<!--主体-->
+<div class="big-container">
+    <article class="article">
+        <!--左容器-->
+        <div class="left-holder">
+
+            <!--文章内容-->
+            <div id="article-holder" style="width: 100%; float: left">
+
+                <div class="article-box" th:each="article:${articleList}">
+                    <div class="ab-content">
+                        <div
+                                class="article-title"><a th:href="'detail?id='+${article.id}">[[${article
+                            .title}]]</a></div>
+                        <div class="article-cate"><a th:href="'category?cid='+${article.cateId}">[[${article
+                            .cateName}]]</a>
+                        </div>
+                        <a th:href="'detail?id='+${article.id}" class="article-img-box">
+                            <img class="article-img" alt=""
+                                 th:src="${article.image}">
+                        </a>
+                        <div class="article-detail-box c-666" >
+                            [[${article.desc}]]
+                        </div>
+                        <span class="article-tail-box">
+                            <span class="article-date c-999">
+                                [[${article.createTime}]]
+                            </span>
+                            <span class="article-author one-line-overflow c-999">
+                                admin
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!--分页指示器-->
+            <div id="pagination" class="pagination fl"></div>
+        </div>
+
+        <!--右容器-->
+        <div class="right-holder">
+
+            <!--个人介绍-->
+            <ul class="info-container">
+                <li class="person-intro-title">
+                    <h1>我的名片</h1>
+                </li>
+                <li class="person-img-li">
+                    <img alt="头像" id="person-img"
+                         th:src="${Profile.image}">
+                </li>
+                <li class="person-intro-detail gradient-text">
+                    <h2>欢迎光临博客</h2>
+                </li>
+                <li class="person-intro-detail">
+                    <h3>网站简介：[[${Profile.desc}]]</h3>
+                </li>
+                <li class="person-intro-detail">
+                    <h3>昵称：[[${Profile.name}]]</h3>
+                </li>
+                <li class="person-intro-detail">
+                    <h3>所在地：[[${Profile.place}]]</h3>
+                </li>
+                <li class="person-intro-detail">
+                    <h3>爱好：[[${Profile.hobby}]]</h3>
+                </li>
+                <li class="person-intro-detail">
+                    <h3>QQ：[[${Profile.qq}]]</h3>
+                </li>
+            </ul>
+
+            <div class="column-container">
+                <ul class="column_box" id="like-box">
+                    <li class="column-title b-b-ece c-29">猜你喜欢</li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column-container">
+                <ul class="column_box" id="like-box">
+                    <li class="column-title b-b-ece c-29">点击排行</li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+
+                    <li class="column-category b-b-ece">
+                        <a href="article-detail.html">如何在Django中新建一个App，连接Mysql数据库，并获取数据。</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </article>
+</div>
+
+
+<!--尾部-->
+<div class="footer">
+    <div class="footer-line">Designed By 苍茫误此生 | Copyright © 2019</div>
+    <div class="footer-line">站长统计</div>
+</div>
+
+<!--脚本-->
+<script type="text/javascript" th:src="@{~/index/js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{~/index/js/global.js}"></script>
+<script type="text/javascript" th:src="@{~/index/js/myPagination.js}"></script>
+<script type="text/javascript" th:src="@{~/index/js/index.js}"></script>
+<script type="text/javascript">
+    const dataTotal = [[${ArticleCount}]]
+    const curpage = [[${curpage}]]
+    const pageTotal = Math.ceil(dataTotal / 5)
+    const pagination = new myPagination({
+        id: 'pagination',
+        curPage: curpage, //初始页码
+        pageTotal: pageTotal, //总页数
+        pageAmount: 5,  //每页多少条
+        dataTotal: dataTotal, //总共多少条数据
+        pageSize: 3, //可选,分页个数
+        showPageTotalFlag: true, //是否显示数据统计
+        getPage: function (page) {
+            window.location.href = "/index?page=" + page;
+        }
+    });
+
+</script>
+</body>
+
+</html>

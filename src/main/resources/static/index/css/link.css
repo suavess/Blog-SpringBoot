@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.link-box {
+    background-color: #ffffff;
+    width: 72%;
+    margin: 20px auto;
+    padding: 15px 0;
+    transition: ease-in-out 0.3s;
+    box-shadow: 0 0 10px #f0f1f2;
+}
+
+.link-box:hover {
+    box-shadow: 0 0 10px #767676;
+}
+
+
+.link-box li {
+    width: 88%;
+    height: 30px;
+    line-height: 30px;
+    margin: 20px auto;
+}
+
+.link-box li a {
+    color: #3aa4ff;
+    font-size: 17px;
+}
+
+.link-box li a:hover {
+    text-decoration: underline #007aff;
+}
+
+@media (max-width: 1200px) {
+    .link-box {
+        width: 92%;
+    }
+
+    .link-box li a {
+        font-size: 15px;
+    }
+
+}
