@@ -1,0 +1,41 @@
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 80
+  tomcat:
+    basedir: /home/meducation/temp
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      test-on-borrow: true
+      test-while-idle: true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/blog?userSSL=true&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+logging:
+  level:
+    com.pyq.blog.mapper.*: debug
+
+
+uploadFile:
+  # 上传图片的保存路径
+  location: E:/uploads/
+  # 访问的路径
+  uploadLocation: /uploadFiles/
+  # 匹配的所有路由请求都映射到location
+  resourceHandler: /uploadFiles/**

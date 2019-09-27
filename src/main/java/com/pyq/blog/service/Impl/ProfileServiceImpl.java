@@ -21,4 +21,9 @@ public class ProfileServiceImpl implements ProfileService {
     public Profile selectAll(){
         return profileMapper.selectAll();
     }
+
+    @Override
+    public void updateProfile(Profile profile) throws Exception {
+        profileMapper.updateProfile(profile);
+    }
 }

@@ -16,7 +16,10 @@ public interface ArticleService {
     Integer countArticlesByYearAndMonth(String year, String month) throws Exception;
     String selectTitleById(String id) throws Exception;
     ArticleExt selectArticleById(String id) throws Exception;
+    List<ArticleExt> selectAllArticles() throws Exception;
     List<ArticleExt> selectArticlesByPage(Integer offset) throws Exception;
     List<ArticleExt> selectArticlesByCidAndPage(Integer cateId,Integer offset) throws Exception;
     List<ArticleExt> selectArticlesByDateAndPage(String year, String month ,Integer offset) throws Exception;
+    void saveArticle(Article article) throws Exception;
+    void delArticle(String id) throws Exception;
 }

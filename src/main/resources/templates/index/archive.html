@@ -2,20 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <meta charset="UTF-8">
     <title>归档</title>
-    <!--样式-->
-    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/global.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/index.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{~/index/css/myPagination.css}" />
-    <link rel="shortcut icon" th:href="@{~/index/img/favicon.ico}"/>
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <div th:replace="index/common/_meta::header"></div>
 </head>
 
 <body>
@@ -116,7 +104,7 @@
                             </div>
                             <a th:href="'detail?id='+${article.id}" class="article-img-box">
                                 <img class="article-img" alt=""
-                                    th:src="${article.image}">
+                                    th:src="${uploadLocation}+'/'+${article.image}">
                             </a>
                             <div class="article-detail-box c-666">
                                 [[${article.desc}]]

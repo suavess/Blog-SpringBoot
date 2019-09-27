@@ -3,7 +3,6 @@ package com.pyq.blog.service.Impl;
 import com.pyq.blog.mapper.ArchiveMapper;
 import com.pyq.blog.mapper.ArticleMapper;
 import com.pyq.blog.model.Archive;
-import com.pyq.blog.model.Article;
 import com.pyq.blog.model.ArticleExt;
 import com.pyq.blog.service.ArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;

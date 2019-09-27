@@ -9,4 +9,5 @@ import com.pyq.blog.model.Profile;
  */
 public interface ProfileService {
     Profile selectAll() throws Exception;
+    void updateProfile(Profile profile) throws Exception;
 }

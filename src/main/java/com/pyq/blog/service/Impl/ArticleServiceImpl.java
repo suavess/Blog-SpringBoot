@@ -3,10 +3,12 @@ import java.util.List;
 
 import com.pyq.blog.mapper.ArticleCategoryMapper;
 import com.pyq.blog.mapper.ArticleMapper;
+import com.pyq.blog.model.Article;
 import com.pyq.blog.model.ArticleExt;
 import com.pyq.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author Suave
@@ -43,6 +45,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<ArticleExt> selectAllArticles() throws Exception {
+        return articleMapper.selectAllArticles();
+    }
+
+    @Override
     public ArticleExt selectArticleById(String id) throws Exception {
         return articleMapper.selectArticleById(id);
     }
@@ -60,5 +67,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleExt> selectArticlesByDateAndPage(String year, String month, Integer offset) throws Exception {
         return articleMapper.selectArticlesByDateAndPage(year, month, offset);
+    }
+
+    @Transactional
+    @Override
+    public void saveArticle(Article article) throws Exception {
+        articleMapper.saveArticle(article);
+    }
+
+    @Override
+    public void delArticle(String id) throws Exception {
+        articleMapper.delArticle(id);
     }
 }

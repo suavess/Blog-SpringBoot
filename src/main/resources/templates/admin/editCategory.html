@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- 公共JS,CSS引入 -->
+	<div th:replace="admin/common/_meta::header"></div>
+<title>编辑分类 - 分类管理</title>
+</head>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类ID：</label>
+			<div class="formControls col-xs-5 col-sm-6">
+				<input type="text" disabled th:value="${articleCategory.id}" class="input-text" id="categoryId" name="categoryId">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+			<div class="formControls col-xs-5 col-sm-6">
+				<input type="text" th:value="${articleCategory.name}" class="input-text" id="categoryName" name="categoryName">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="btn btn-primary radius" id="submit"><i class="Hui-iconfont">&#xe632;</i> 修改</button>
+				<button onclick="formClose()" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<div th:replace="admin/common/_footer">
+</div>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" th:src="@{~/admin/lib/My97DatePicker/4.8/WdatePicker.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/jquery.validate.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/validate-methods.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/messages_zh.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/webuploader/0.1.5/webuploader.min.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/ueditor/1.4.3/ueditor.config.js}"></script>
+<script type="text/javascript" th:src="@{~/admin/lib/ueditor/1.4.3/ueditor.all.min.js}"> </script>
+<script type="text/javascript" th:src="@{~/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js}"></script>
+<script type="text/javascript">
+$(function(){
+	window.formClose = function(){
+		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		parent.layer.close(index); //再执行关闭
+	}
+
+	$("#submit").click(function(){
+		$.ajax({
+			url:'/editCategory',
+			type:'post',
+			data:{
+				id:$("#categoryId").val(),
+				name:$("#categoryName").val()
+			},
+			success:function () {
+				layer.msg('操作成功', {icon: 1});
+				setTimeout(function () {
+					formClose()
+				},1500)
+			},
+			error:function () {
+				layer.msg('操作失败', {icon: 2});
+			}
+		})
+		return false;
+	})
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

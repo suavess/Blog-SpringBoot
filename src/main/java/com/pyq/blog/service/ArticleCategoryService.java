@@ -1,5 +1,6 @@
 package com.pyq.blog.service;
 
+import com.pyq.blog.model.ArticleCategory;
 import com.pyq.blog.model.ArticleCategoryExt;
 
 import java.util.List;
@@ -11,4 +12,8 @@ import java.util.List;
  */
 public interface ArticleCategoryService {
     List<ArticleCategoryExt> selectAllCategory() throws Exception;
+    ArticleCategory selectCategoryById(String id) throws Exception;
+    void delCategoryById(String id) throws Exception;
+    void updateCategoryById(ArticleCategory articleCategory) throws Exception;
+    void addCategory(String cateName) throws Exception;
 }

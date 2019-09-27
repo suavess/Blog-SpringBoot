@@ -2,15 +2,14 @@ package com.pyq.blog.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @Author Suave
  * @Date 2019/9/10 12:04
  * @Version 1.0
  */
-@Getter @Setter
-public class ArticleCategoryExt {
-    private Integer id;
-    private String name;
+@Getter @Setter @ToString
+public class ArticleCategoryExt extends ArticleCategory {
     private Integer ArticleNum;
 }
