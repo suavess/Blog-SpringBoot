@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminCategoryController {
 
     @Autowired
     ArticleCategoryService articleCategoryService;
 
-    @RequestMapping("/categoryList")
+    @RequestMapping("categoryList")
     public String categoryList(Model model){
         List<ArticleCategoryExt> articleCategoryList = null;
         try {
@@ -28,12 +29,12 @@ public class AdminCategoryController {
         return "admin/categoryList";
     }
 
-    @GetMapping("/addCategory")
+    @GetMapping("addCategory")
     public String addCategoryPage(){
         return "admin/addCategory";
     }
 
-    @PostMapping("/addCategory")
+    @PostMapping("addCategory")
     @ResponseBody
     public void addCategory(String cateName){
         try {
@@ -43,7 +44,7 @@ public class AdminCategoryController {
         }
     }
 
-    @GetMapping("/editCategory")
+    @GetMapping("editCategory")
     public String editCategory(String id,Model model){
         ArticleCategory articleCategory = null;
         try {
@@ -55,7 +56,7 @@ public class AdminCategoryController {
         return "admin/editCategory";
     }
 
-    @PostMapping("/editCategory")
+    @PostMapping("editCategory")
     @ResponseBody
     public void editCategory(ArticleCategory articleCategory){
         try {
@@ -65,7 +66,7 @@ public class AdminCategoryController {
         }
     }
 
-    @DeleteMapping("/delCategory")
+    @DeleteMapping("delCategory")
     @ResponseBody
     public void delCategory(String id){
         try {

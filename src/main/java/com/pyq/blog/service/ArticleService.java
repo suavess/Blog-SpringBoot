@@ -22,4 +22,5 @@ public interface ArticleService {
     List<ArticleExt> selectArticlesByDateAndPage(String year, String month ,Integer offset) throws Exception;
     void saveArticle(Article article) throws Exception;
     void delArticle(String id) throws Exception;
+    void updateArticle(Article article) throws Exception;
 }

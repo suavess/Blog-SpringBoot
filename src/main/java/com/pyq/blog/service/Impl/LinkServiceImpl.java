@@ -23,4 +23,24 @@ public class LinkServiceImpl implements LinkService {
     public List<Link> selectAllLink() throws Exception {
         return linkMapper.selectAllLink();
     }
+
+    @Override
+    public void addLink(Link link) throws Exception {
+        linkMapper.addLink(link);
+    }
+
+    @Override
+    public Link selectLinkById(String id) throws Exception {
+        return linkMapper.selectLinkById(id);
+    }
+
+    @Override
+    public void updateLink(Link link) throws Exception {
+        linkMapper.updateLink(link);
+    }
+
+    @Override
+    public void delLink(String id) throws Exception {
+        linkMapper.delLink(id);
+    }
 }

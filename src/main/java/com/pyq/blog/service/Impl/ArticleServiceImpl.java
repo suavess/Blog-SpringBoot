@@ -79,4 +79,10 @@ public class ArticleServiceImpl implements ArticleService {
     public void delArticle(String id) throws Exception {
         articleMapper.delArticle(id);
     }
+
+    @Override
+    @Transactional
+    public void updateArticle(Article article) throws Exception {
+        articleMapper.updateArticle(article);
+    }
 }

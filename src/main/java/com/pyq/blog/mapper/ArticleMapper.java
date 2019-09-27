@@ -2,10 +2,7 @@ package com.pyq.blog.mapper;
 
 import com.pyq.blog.model.Article;
 import com.pyq.blog.model.ArticleExt;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -55,6 +52,14 @@ public interface ArticleMapper {
     @Insert("insert into article values(null,#{article.cateId},#{article.title}," +
             "#{article.desc},#{article.content},NOW(),#{article.image})")
     void saveArticle(@Param("article") Article article);
+
+    @Update({"<script>",
+            "update article set article.cate_id=#{article.cateId},article.title=#{article.title}," +
+            "article.desc=#{article.desc},article.content=#{article.content} ",
+            "<if test='article.image!=null'>",",article.image=#{article.image}","</if>",
+            "where article.id=#{article.id}",
+            "</script>"})
+    void updateArticle(@Param("article") Article article);
 
     @Delete("delete from article where id = #{id}")
     void delArticle(String id);

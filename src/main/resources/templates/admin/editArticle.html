@@ -3,15 +3,16 @@
 <head>
     <!-- 公共JS,CSS引入 -->
     <div th:replace="admin/common/_meta::header"></div>
-    <title>新增文章 - 文章管理</title>
+    <title>编辑文章 - 文章管理</title>
 </head>
 <body>
 <article class="page-container">
-    <form class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+    <form class="form form-horizontal" id="form-article-edit" enctype="multipart/form-data">
+        <input type="hidden" th:value="${article.id}" />
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="title" name="title">
+                <input type="text" class="input-text" th:value="${article.title}" id="title" name="title">
             </div>
         </div>
         <div class="row cl">
@@ -20,7 +21,9 @@
 				<span class="select-box">
 					<select  id="cate_id" name="cate_id" class="select">
 						<option value="">--请选择--</option>
-						<option th:value="${category.id}" th:each="category:${categoryList}">
+						<option th:value="${category.id}"
+                                th:each="category:${categoryList}"
+                                th:selected="${article.cateId eq category.id}">
                             [[${category.name}]]
                         </option>
 					</select>
@@ -31,22 +34,24 @@
             <label class="form-label col-xs-4 col-sm-2">文章简述：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="desc" id="desc" cols="" rows="" class="textarea" placeholder="显示在文章列表页的内容...说点什么...最少输入10个字符"
-                          datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"></textarea>
+                          datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！">[[${article.desc}]]</textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
             <div class="formControls col-xs-8 col-sm-9">
+                <img th:src="${uploadLocation}+'/'+${article.image}">
                 <span class="btn-upload form-group">
-                  <input class="input-text upload-url radius" type="text" name="uploadfile-1" id="uploadfile-1" readonly><div class="btn btn-primary radius">浏览文件</div>
+                  <input class="input-text upload-url radius" type="text" name="uploadfile-1" id="uploadfile-1" readonly>
+                    <div class="btn btn-primary radius">重新上传</div>
                   <input type="file" multiple id="image" name="image" class="input-file">
                 </span>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
-            <div id="editor" class="col-xs-8 col-sm-10">
+            <div id="editor" class="col-xs-8 col-sm-10" th:utext="${article.content}">
             </div>
         </div>
         <div class="row cl">
@@ -102,13 +107,10 @@
                 desc:{
                     required:true,
                     rangelength:[10,200]
-                },
-                image:{
-                    required:true
                 }
             },
             submitHandler:function(){
-                var formdata = new FormData($("#form-article-add")[0]);
+                var formdata = new FormData($("#form-article-edit")[0]);
                 formdata.append("content",editor.txt.html())
                 $.ajax({
                     type:"post",
@@ -119,13 +121,13 @@
                     contentType:false,
                     processData:false,
                     success:function(){
-                        layer.msg('添加文章成功！', {icon: 1});
+                        layer.msg('修改文章成功！', {icon: 1});
                         setTimeout(function () {
                             formClose()
                         },1500)
                     },
                     error:function () {
-                        layer.msg('添加文章失败！', {icon: 2});
+                        layer.msg('修改文章失败！', {icon: 2});
                     }
                 })
             }

@@ -11,4 +11,8 @@ import java.util.List;
  */
 public interface LinkService {
     List<Link> selectAllLink() throws Exception;
+    void addLink(Link link) throws Exception;
+    Link selectLinkById(String id) throws Exception;
+    void updateLink(Link link) throws Exception;
+    void delLink(String id) throws Exception;
 }

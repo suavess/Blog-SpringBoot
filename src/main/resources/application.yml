@@ -34,7 +34,7 @@ logging:
 
 uploadFile:
   # 上传图片的保存路径
-  location: E:/uploads/
+  location: /var/www/blog/uploads/
   # 访问的路径
   uploadLocation: /uploadFiles/
   # 匹配的所有路由请求都映射到location

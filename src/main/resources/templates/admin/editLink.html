@@ -3,21 +3,27 @@
 <head>
 	<!-- 公共JS,CSS引入 -->
 	<div th:replace="admin/common/_meta::header"></div>
-<title>编辑分类 - 分类管理</title>
+<title>编辑友链 - 友链管理</title>
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form class="form form-horizontal" id="form-link-edit">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类ID：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>友链Id：</label>
 			<div class="formControls col-xs-5 col-sm-6">
-				<input type="text" disabled th:value="${articleCategory.id}" class="input-text" id="categoryId" name="categoryId">
+				<input type="text" class="input-text" id="linkId" name="linkId" disabled th:value="${link.id}">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>友链名称：</label>
 			<div class="formControls col-xs-5 col-sm-6">
-				<input type="text" th:value="${articleCategory.name}" class="input-text" id="categoryName" name="categoryName">
+				<input type="text" class="input-text" id="linkName" name="linkName" th:value="${link.name}">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>友链链接：</label>
+			<div class="formControls col-xs-5 col-sm-6">
+				<input type="text" class="input-text" id="linkHref" name="linkHref" th:value="${link.href}">
 			</div>
 		</div>
 		<div class="row cl">
@@ -39,7 +45,6 @@
 <script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/jquery.validate.js}"></script>
 <script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/validate-methods.js}"></script>
 <script type="text/javascript" th:src="@{~/admin/lib/jquery.validation/1.14.0/messages_zh.js}"></script>
-<script type="text/javascript" th:src="@{~/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js}"></script>
 <script type="text/javascript">
 $(function(){
 	window.formClose = function(){
@@ -47,25 +52,35 @@ $(function(){
 		parent.layer.close(index); //再执行关闭
 	}
 
-	$("#submit").click(function(){
-		$.ajax({
-			url:'/admin/editCategory',
-			type:'post',
-			data:{
-				id:$("#categoryId").val(),
-				name:$("#categoryName").val()
+	$("#form-link-edit").validate({
+		rules: {
+			linkName: {
+				required: true
 			},
-			success:function () {
-				layer.msg('操作成功', {icon: 1});
-				setTimeout(function () {
-					formClose()
-				},1500)
-			},
-			error:function () {
-				layer.msg('操作失败', {icon: 2});
+			linkHref: {
+				required: true
 			}
-		})
-		return false;
+		},
+		submitHandler:function(){
+			$.ajax({
+				url:'/admin/editLink',
+				type:'post',
+				data:{
+					id:$("#linkId").val(),
+					name:$("#linkName").val(),
+					href:$("#linkHref").val()
+				},
+				success:function () {
+					layer.msg('修改成功', {icon: 1});
+					setTimeout(function () {
+						formClose()
+					},1500)
+				},
+				error:function () {
+					layer.msg('操作失败', {icon: 2});
+				}
+			})
+		}
 	})
 });
 </script>
