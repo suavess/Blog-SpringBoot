@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="header(active)">
+    <!--导航栏-->
+    <div class="nav-bar-holder">
+        <div class="nav-bar" id="nav-bar">
+            <div class="logo-box">
+                <a href="" class="blog-title ta-c">
+                    <img alt="logo" th:src="@{~/index/img/logo.jpg}"/>
+                </a>
+            </div>
+
+            <div class="nb-a-holder" id="home">
+                <a class="nb-a ta-c" th:id="${active}=='index'?'active':''" href="/">首页</a>
+            </div>
+            <div class="nb-a-holder">
+                <a class="nb-a ta-c" th:id="${active}=='category'?'active':''" href="category">分类</a>
+            </div>
+            <div class="nb-a-holder">
+                <a class="nb-a ta-c" th:id="${active}=='archive'?'active':''" href="archive">归档</a>
+            </div>
+            <div class="nb-a-holder">
+                <a class="nb-a ta-c" th:id="${active}=='link'?'active':''" href="link">友情链接</a>
+            </div>
+
+            <div id="search-nb">
+                <span class="search-s fl">
+                    <label for="search-input"></label><input class="fl" type="text" id="search-input"
+                                                             placeholder="请输入关键字">
+                    <a class="search-icon fl" onclick="" href="search"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- 导航栏结束 -->
+
+    <!-- 移动端导航栏 -->
+    <div class="mobile-nav">
+        <div class="logo-box">
+            <a href="/" class="blog-title ta-c">
+                <img alt="logo" th:src="@{~/index/img/logo.jpg}"/></a>
+        </div>
+        <a id="mobile_cate" th:attr="style='background-image:url('+@{~/index/img/cate.svg}+')'"
+           href="javascript:void(0);"
+           onclick="show_nav()"></a>
+    </div>
+
+    <ul id="nav-m-list" style="display: none;">
+        <li><a href="index">首页</a></li>
+        <li><a href="category">分类</a></li>
+        <li><a href="archive">归档</a></li>
+        <li><a href="link">友情链接</a></li>
+        <li>
+            <span class="search-s fl">
+                <label for="search-input-m"></label><input class="fl" type="text" id="search-input-m" placeholder="关键词">
+                <a class="search-icon fl" onclick="" href="search"></a>
+            </span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

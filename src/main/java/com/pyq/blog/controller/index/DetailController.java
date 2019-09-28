@@ -25,6 +25,7 @@ public class DetailController {
                 throw new RuntimeException();
             } else {
                 ArticleExt article = articleService.selectArticleById(id);
+                System.out.println(article.getCreateTime());
                 String lastTitle = articleService.selectTitleById(String.valueOf(Integer.valueOf(id)+1));
                 String nextTitle = articleService.selectTitleById(String.valueOf(Integer.valueOf(id)+1));
                 model.addAttribute("lastTitle",lastTitle);

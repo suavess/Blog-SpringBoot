@@ -5,6 +5,7 @@ import com.pyq.blog.model.ArticleCategoryExt;
 import com.pyq.blog.model.ArticleExt;
 import com.pyq.blog.service.ArticleCategoryService;
 import com.pyq.blog.service.ArticleService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -92,7 +93,7 @@ public class ArticleController {
         return "admin/editArticle";
     }
 
-    @DeleteMapping("editArticle")
+    @PostMapping("editArticle")
     @ResponseBody
     public void editArticle(MultipartFile image,String id, String title, String cate_id, String desc, String content){
         Article article = new Article();
@@ -114,7 +115,7 @@ public class ArticleController {
     }
 
 
-    @PostMapping("delArticle")
+    @DeleteMapping("delArticle")
     @ResponseBody
     public void delArticle(String id){
         try {

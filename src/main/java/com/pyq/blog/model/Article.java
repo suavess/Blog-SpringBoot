@@ -1,10 +1,12 @@
 package com.pyq.blog.model;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
@@ -19,7 +21,6 @@ public class Article {
     private String title;
     private String desc;
     private String content;
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    private Timestamp createTime;
     private String image;
 }
