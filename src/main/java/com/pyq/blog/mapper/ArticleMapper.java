@@ -6,11 +6,6 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 12:29
- * @Version 1.0
- */
 public interface ArticleMapper {
 
     @Select("select count(1) from article")

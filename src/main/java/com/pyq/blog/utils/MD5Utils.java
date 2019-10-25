@@ -3,9 +3,7 @@ package com.pyq.blog.utils;
 import java.security.MessageDigest;
 
 /**
- * @Author Suave
- * @Date 2019/9/10 11:53
- * @Version 1.0
+ * MD5密码加密类
  */
 public class MD5Utils {
     public final static String MD5Encoding(String s) {
@@ -37,5 +35,4 @@ public class MD5Utils {
     public static void main(String[] args) {
         System.out.println(MD5Encoding("123456"));
     }
-
 }

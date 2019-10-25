@@ -8,11 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 16:34
- * @Version 1.0
- */
 @Service("LinkService")
 public class LinkServiceImpl implements LinkService {
 
@@ -20,27 +15,27 @@ public class LinkServiceImpl implements LinkService {
     LinkMapper linkMapper;
 
     @Override
-    public List<Link> selectAllLink() throws Exception {
+    public List<Link> selectAllLink() {
         return linkMapper.selectAllLink();
     }
 
     @Override
-    public void addLink(Link link) throws Exception {
+    public void addLink(Link link) {
         linkMapper.addLink(link);
     }
 
     @Override
-    public Link selectLinkById(String id) throws Exception {
+    public Link selectLinkById(String id) {
         return linkMapper.selectLinkById(id);
     }
 
     @Override
-    public void updateLink(Link link) throws Exception {
+    public void updateLink(Link link) {
         linkMapper.updateLink(link);
     }
 
     @Override
-    public void delLink(String id) throws Exception {
+    public void delLink(String id) {
         linkMapper.delLink(id);
     }
 }

@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 11:22
- * @Version 1.0
- */
 @Controller
 public class CategoryController {
 
@@ -29,44 +24,24 @@ public class CategoryController {
     @Value("${uploadFile.uploadLocation}")
     private String uploadLocation;
 
-    @RequestMapping("category")
-    public String category(String cid,String page,Model model){
-        try {
-            //左侧文章分类栏目
-            List<ArticleCategoryExt> categoryExtList = articleCategoryService.selectAllCategory();
-            model.addAttribute("categoryList",categoryExtList);
-            model.addAttribute("uploadLocation",uploadLocation);
-            if (cid==null){
-                //显示所有文章时文章总数量
-                Integer countAllArticle = articleService.countAllArticle();
-                model.addAttribute("ArticleCount",countAllArticle);
-                if (page==null){
-                    //默认为第一页
-                    List<ArticleExt> articleExtList = articleService.selectArticlesByPage(0);
-                    model.addAttribute("articleList",articleExtList);
-                    model.addAttribute("curpage",1);
-                }else{
-                    List<ArticleExt> articleExtList = articleService.selectArticlesByPage(Integer.valueOf(page)*5-5);
-                    model.addAttribute("articleList",articleExtList);
-                    model.addAttribute("curpage",Integer.valueOf(page));
-                }
-            }else{
-                //显示该分类下文章总数量
-                Integer countArticleByCid = articleService.countArticlesByCateId(Integer.valueOf(cid));
-                model.addAttribute("ArticleCount",countArticleByCid);
-                if (page == null) {
-                    //默认该分类下第一页
-                    List<ArticleExt> articleExtList = articleService.selectArticlesByCidAndPage(Integer.valueOf(cid),0);
-                    model.addAttribute("articleList",articleExtList);
-                    model.addAttribute("curpage",1);
-                }else{
-                    List<ArticleExt> articleExtList = articleService.selectArticlesByCidAndPage(Integer.valueOf(cid),Integer.valueOf(page)*5-5);
-                    model.addAttribute("articleList",articleExtList);
-                    model.addAttribute("curpage",Integer.valueOf(page));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    @RequestMapping("/category")
+    public String category(String cid, String page, Model model) {
+        //查询该分类下文章数量，未指定分类则查询所有文章数量
+        Integer countAllArticle = articleService.countArticlesByCateId(cid);
+        //查询分类列表
+        List<ArticleCategoryExt> categoryExtList = articleCategoryService.selectAllCategory();
+        //查询该分类该页码下的文章列表
+        List<ArticleExt> articleExtList = articleService.selectArticlesByCidAndPage(cid, page);
+        //图片根路径
+        model.addAttribute("uploadLocation", uploadLocation);
+        model.addAttribute("ArticleCount", countAllArticle);
+        model.addAttribute("categoryList", categoryExtList);
+        model.addAttribute("articleList", articleExtList);
+        //添加当前页码，交给前端js分页插件处理
+        if (page == null){
+            model.addAttribute("curpage", 1);
+        }else {
+            model.addAttribute("curpage", Integer.valueOf(page));
         }
         return "index/category";
     }

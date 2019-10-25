@@ -11,11 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 14:59
- * @Version 1.0
- */
 @Service("ArticleCategoryService")
 public class ArticleCategoryServiceImpl implements ArticleCategoryService {
 
@@ -26,31 +21,33 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
     ArticleMapper articleMapper;
 
     @Override
-    public List<ArticleCategoryExt> selectAllCategory() throws Exception {
+    public List<ArticleCategoryExt> selectAllCategory(){
         List<ArticleCategoryExt> categoryExtArrayList = articleCategoryMapper.selectAll();
         return categoryExtArrayList;
     }
 
     @Transactional
     @Override
-    public void addCategory(String cateName) throws Exception {
+    public void addCategory(String cateName){
         articleCategoryMapper.addCategory(cateName);
     }
 
     @Override
-    public ArticleCategory selectCategoryById(String id) throws Exception {
+    public ArticleCategory selectCategoryById(String id){
         return articleCategoryMapper.selectCategoryById(id);
     }
 
     @Transactional
     @Override
-    public void updateCategoryById(ArticleCategory articleCategory) throws Exception {
+    public void updateCategoryById(ArticleCategory articleCategory){
         articleCategoryMapper.updateCategoryById(articleCategory);
     }
 
     @Transactional
     @Override
-    public void delCategoryById(String id) throws Exception {
+    public void delCategoryById(String id){
         articleCategoryMapper.delCategoryById(id);
     }
+
+
 }

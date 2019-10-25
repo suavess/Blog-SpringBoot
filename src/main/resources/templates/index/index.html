@@ -140,12 +140,15 @@
 <script type="text/javascript" th:src="@{~/index/js/myPagination.js}"></script>
 <script type="text/javascript" th:src="@{~/index/js/index.js}"></script>
 <script type="text/javascript">
+    //文章总数
     const dataTotal = [[${ArticleCount}]]
+    //当前页码
     const curpage = [[${curpage}]]
+    // 总页数向上取整
     const pageTotal = Math.ceil(dataTotal / 5)
     const pagination = new myPagination({
         id: 'pagination',
-        curPage: curpage, //初始页码
+        curPage: curpage, //当前页码
         pageTotal: pageTotal, //总页数
         pageAmount: 5,  //每页多少条
         dataTotal: dataTotal, //总共多少条数据
@@ -155,7 +158,6 @@
             window.location.href = "/index?page=" + page;
         }
     });
-
 </script>
 </body>
 

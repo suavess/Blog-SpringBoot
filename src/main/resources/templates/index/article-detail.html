@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>[[${article.title}]]</title>
     <link rel="stylesheet" type="text/css" th:href="@{~/index/css/article-detail.css}">
@@ -47,7 +46,7 @@
                 <div class="n-div" th:if="${nextTitle}!=null">
                     <span class="fl">下一篇：</span>
                     <a class="one-line-overflow fl" th:href="'/detail?id='+${nextId}"
-                       id="next-a">[[${lastTitle}]]</a>
+                       id="next-a">[[${nextTitle}]]</a>
                 </div>
             </div>
         </div>

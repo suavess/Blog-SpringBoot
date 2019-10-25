@@ -10,11 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 16:58
- * @Version 1.0
- */
 @Service("ArchiveService")
 public class ArchiveServiceImpl implements ArchiveService {
 
@@ -24,13 +19,8 @@ public class ArchiveServiceImpl implements ArchiveService {
     @Autowired
     ArticleMapper articleMapper;
 
-    /**
-     * 归档列表
-     * @return
-     * @throws Exception
-     */
     @Override
-    public List<Archive> selectArchive() throws Exception {
+    public List<Archive> selectArchive(){
         List<Archive> archiveList = archiveMapper.selectArchive();
         for (Archive archive:archiveList) {
             String year = archive.getYear();
@@ -43,11 +33,5 @@ public class ArchiveServiceImpl implements ArchiveService {
             archive.setArticleNum(String.valueOf(count));
         }
         return archiveList;
-    }
-
-    //文章列表
-    @Override
-    public List<ArticleExt> selectArticlesByYearAndMonth(String year, String month) throws Exception {
-        return articleMapper.selectArticlesByYearAndMonth(year, month);
     }
 }

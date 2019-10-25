@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * @Author Suave
- * @Date 2019/9/9 17:24
- * @Version 1.0
+ * 首页
  */
-
 @Controller
 public class IndexController {
 
@@ -30,25 +27,24 @@ public class IndexController {
 
     @RequestMapping(value = {"/","/index"})
     public String index(String page, Model model) throws Exception {
-        Integer offset = null;
-        Integer curpage = null;
-        List<ArticleExt> articleList = null;
-        if (page == null){
-            offset = 0;
-            curpage = 1;
-            articleList = articleService.selectArticlesByPage(offset);
-        }else {
-            offset = Integer.valueOf(page)*5-5;
-            curpage = Integer.valueOf(page);
-            articleList = articleService.selectArticlesByPage(offset);
-        }
+        //查询文章列表
+        List<ArticleExt> articleList = articleService.selectArticlesByPage(page);
+        //查询总文章数
         Integer countAllArticle = articleService.countAllArticle();
+        //查询网站介绍
         Profile profile = profileService.selectAll();
+        //首页每张图片的根链接
         model.addAttribute("uploadLocation",uploadLocation);
         model.addAttribute("articleList",articleList);
         model.addAttribute("ArticleCount",countAllArticle);
         model.addAttribute("Profile",profile);
-        model.addAttribute("curpage",curpage);
+        //添加当前页码
+        if (page == null){
+            model.addAttribute("curpage",0);
+        }else{
+            model.addAttribute("curpage",Integer.valueOf(page));
+        }
         return "index/index";
     }
+
 }

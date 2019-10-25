@@ -5,22 +5,17 @@ import com.pyq.blog.model.ArticleExt;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 12:39
- * @Version 1.0
- */
 public interface ArticleService {
-    Integer countAllArticle() throws Exception;
-    Integer countArticlesByCateId(Integer cateId) throws Exception;
-    Integer countArticlesByYearAndMonth(String year, String month) throws Exception;
-    String selectTitleById(String id) throws Exception;
-    ArticleExt selectArticleById(String id) throws Exception;
-    List<ArticleExt> selectAllArticles() throws Exception;
-    List<ArticleExt> selectArticlesByPage(Integer offset) throws Exception;
-    List<ArticleExt> selectArticlesByCidAndPage(Integer cateId,Integer offset) throws Exception;
-    List<ArticleExt> selectArticlesByDateAndPage(String year, String month ,Integer offset) throws Exception;
-    void saveArticle(Article article) throws Exception;
-    void delArticle(String id) throws Exception;
-    void updateArticle(Article article) throws Exception;
+    Integer countAllArticle();
+    Integer countArticlesByCateId(String cateId);
+    Integer countArticlesByYearAndMonth(String year, String month);
+    String selectTitleById(String id);
+    ArticleExt selectArticleById(String id);
+    List<ArticleExt> selectAllArticles();
+    List<ArticleExt> selectArticlesByPage(String page);
+    List<ArticleExt> selectArticlesByCidAndPage(String cateId, String page);
+    List<ArticleExt> selectArticlesByDateAndPage(String year, String month ,String page);
+    void saveArticle(Article article);
+    void delArticle(String id);
+    void updateArticle(Article article);
 }

@@ -6,11 +6,6 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 12:29
- * @Version 1.0
- */
 public interface ArticleCategoryMapper {
     @Select("select name from article_category where id = #{cate_id}")
     String selectCateName(Integer cate_id);

@@ -14,7 +14,7 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/blog?userSSL=true&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://ipyq.top:3306/blog?userSSL=true&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
   thymeleaf:
     cache: false
     encoding: UTF-8
@@ -33,7 +33,7 @@ logging:
 
 uploadFile:
   # 上传图片的保存路径
-  # location: /var/www/blog/uploads/
+#  location: /var/www/blog/uploads/
   location: E:/uploads/
   # 访问的路径
   uploadLocation: /uploadFiles/

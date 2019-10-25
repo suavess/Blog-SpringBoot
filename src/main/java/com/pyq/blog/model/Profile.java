@@ -4,13 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 13:02
- * @Version 1.0
- */
 @Getter @Setter @ToString
 public class Profile {
+    private Integer id;
     private String desc;
     private String name;
     private String place;

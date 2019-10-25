@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 11:38
- * @Version 1.0
- */
 @Controller
 public class LinkController {
 
@@ -22,12 +17,9 @@ public class LinkController {
 
     @RequestMapping("link")
     public String link(Model model) {
-        try {
-            List<Link> linkList = linkService.selectAllLink();
-            model.addAttribute("linkList",linkList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //查询所有友链
+        List<Link> linkList = linkService.selectAllLink();
+        model.addAttribute("linkList", linkList);
         return "index/link";
     }
 }

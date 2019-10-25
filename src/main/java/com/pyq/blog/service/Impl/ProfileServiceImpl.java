@@ -6,11 +6,6 @@ import com.pyq.blog.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 13:09
- * @Version 1.0
- */
 @Service("ProfileService")
 public class ProfileServiceImpl implements ProfileService {
 
@@ -23,7 +18,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void updateProfile(Profile profile) throws Exception {
+    public void updateProfile(Profile profile){
         profileMapper.updateProfile(profile);
     }
 }

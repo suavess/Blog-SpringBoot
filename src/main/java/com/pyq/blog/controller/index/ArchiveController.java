@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 11:23
- * @Version 1.0
- */
 @Controller
 public class ArchiveController {
 
@@ -31,42 +26,21 @@ public class ArchiveController {
 
     @RequestMapping("archive")
     public String archive(String year, String month, String page, Model model) {
-        Integer offset = null;
-        Integer curpage = null;
-        Integer countArticle = null;
-        List<ArticleExt> articleList = null;
-        try {
-            List<Archive> archiveList = archiveService.selectArchive();
-            model.addAttribute("archiveList", archiveList);
-            if (year == null && month == null) {
-                countArticle = articleService.countAllArticle();
-                if (page == null){
-                    offset = 0;
-                    curpage = 1;
-                    articleList = articleService.selectArticlesByPage(offset);
-                }else {
-                    offset = Integer.valueOf(page)*5-5;
-                    curpage = Integer.valueOf(page);
-                    articleList = articleService.selectArticlesByPage(offset);
-                }
-            } else {
-                countArticle = articleService.countArticlesByYearAndMonth(year, month);
-                if (page == null){
-                    offset = 0;
-                    curpage = 1;
-                    articleList = articleService.selectArticlesByDateAndPage(year, month, offset);
-                }else {
-                    offset = Integer.valueOf(page)*5-5;
-                    curpage = Integer.valueOf(page);
-                    articleList = articleService.selectArticlesByDateAndPage(year, month, offset);
-                }
-            }
-            model.addAttribute("uploadLocation",uploadLocation);
-            model.addAttribute("articleList",articleList);
-            model.addAttribute("ArticleCount",countArticle);
-            model.addAttribute("curpage",curpage);
-        } catch (Exception e) {
-            e.printStackTrace();
+        //查询所有归档日期
+        List<Archive> archiveList = archiveService.selectArchive();
+        //查询文章数量
+        Integer countArticle = articleService.countArticlesByYearAndMonth(year, month);
+        //查询文章列表
+        List<ArticleExt> articleList = articleService.selectArticlesByDateAndPage(year, month, page);
+        model.addAttribute("archiveList", archiveList);
+        model.addAttribute("uploadLocation", uploadLocation);
+        model.addAttribute("articleList", articleList);
+        model.addAttribute("ArticleCount", countArticle);
+        //发送当前页码到前端交给js分页插件处理
+        if (page == null) {
+            model.addAttribute("curpage", 1);
+        } else {
+            model.addAttribute("curpage", Integer.valueOf(page));
         }
         return "index/archive";
     }

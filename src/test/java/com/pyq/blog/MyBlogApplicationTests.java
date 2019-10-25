@@ -11,6 +11,8 @@ public class MyBlogApplicationTests {
 
     @Test
     public void contextLoads() {
+        String a = null;
+        System.out.println(Integer.valueOf(a));
     }
 
 }
