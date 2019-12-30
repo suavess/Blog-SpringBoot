@@ -26,7 +26,7 @@ public class IndexController {
     private String uploadLocation;
 
     @RequestMapping(value = {"/","/index"})
-    public String index(String page, Model model) throws Exception {
+    public String index(String page, Model model){
         //查询文章列表
         List<ArticleExt> articleList = articleService.selectArticlesByPage(page);
         //查询总文章数
@@ -46,5 +46,4 @@ public class IndexController {
         }
         return "index/index";
     }
-
 }

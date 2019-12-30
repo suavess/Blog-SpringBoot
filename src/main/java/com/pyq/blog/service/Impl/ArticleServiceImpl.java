@@ -9,13 +9,7 @@ import com.pyq.blog.model.ArticleExt;
 import com.pyq.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-/**
- * @Author Suave
- * @Date 2019/9/10 12:40
- * @Version 1.0
- */
 @Service(value = "ArticleService")
 public class ArticleServiceImpl implements ArticleService {
 
@@ -114,7 +108,6 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Transactional
     @Override
     public void saveArticle(Article article) {
         articleMapper.saveArticle(article);
@@ -126,7 +119,6 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    @Transactional
     public void updateArticle(Article article) {
         articleMapper.updateArticle(article);
     }
