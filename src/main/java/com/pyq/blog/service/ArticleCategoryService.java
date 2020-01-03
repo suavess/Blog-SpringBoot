@@ -8,7 +8,7 @@ import java.util.List;
 public interface ArticleCategoryService {
     List<ArticleCategoryExt> selectAllCategory();
     ArticleCategory selectCategoryById(String id);
-    void delCategoryById(String id);
+    String delCategoryById(String id);
     void updateCategoryById(ArticleCategory articleCategory);
     void addCategory(String cateName);
 }

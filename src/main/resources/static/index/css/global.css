@@ -338,17 +338,17 @@ pre {
 /*响应式尺寸*/
 
 @media (max-width: 1024px) {
-    .nav-bar-holder {
-        display: none;
-    }
-    .mobile-nav {
-        display: block;
-        height: 50px;
-        width: 100%;
-        background-color: #ffffff;
-        position: fixed;
-        z-index: 999;
-    }
+    /*.nav-bar-holder {*/
+    /*    display: none;*/
+    /*}*/
+    /*.mobile-nav {*/
+    /*    display: block;*/
+    /*    height: 50px;*/
+    /*    width: 100%;*/
+    /*    background-color: #ffffff;*/
+    /*    position: fixed;*/
+    /*    z-index: 999;*/
+    /*}*/
     .blog-title img {
         margin-top: 0;
     }

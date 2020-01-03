@@ -28,7 +28,7 @@ public interface ArticleMapper {
             ".cate_id=article_category.id")
     List<ArticleExt> selectAllArticles();
 
-    @Select("select article.*,article_category.`name` as cate_name from article LEFT JOIN article_category on " +
+    @Select("select article.*,article_category.name as cate_name from article LEFT JOIN article_category on " +
             "article_category.id=article.cate_id ORDER BY article.create_time desc limit #{offset},5")
     List<ArticleExt> selectArticlesByPage(Integer offset);
 

@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div th:replace="index/common/_header::header(link)"></div>
+<div th:replace="index/common/_header::header(null)"></div>
 
 <!--主体-->
 <section class="main">
@@ -16,20 +16,10 @@
     <div class="left-box">
 
         <div class="article-container">
-            <div class="sort-box">
-                <span class="location fl c-666">
-                    <span class="at-sort-detail c-666">当前位置：
-                      <a href="/">首页</a> >
-                      <a th:href="'/category?cid='+${article.cateId}">[[${article.cateName}]]</a>
-                    </span>
-                </span>
-            </div>
             <div class="article-content markdown-body">
 
                 <h1 style="margin: 10px 0">[[${article.title}]]</h1>
                 <div class="writer-info">
-                    <span style="margin: 5px 0;">作者: </span>
-                    <span id="writer">admin </span>
                     <span id="write-time">[[${#dates.format(article.createTime,'yyyy-MM-dd HH:mm:ss')}]]</span>
                 </div>
                 <div th:utext="${article.content}">

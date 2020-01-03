@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,7 +19,7 @@ public class AdminLinkController {
 
     @RequestMapping("linkList")
     public String linkPage(Model model){
-        List<Link> linkList = null;
+         List<Link> linkList = new ArrayList<>();
         try {
             linkList = linkService.selectAllLink();
         } catch (Exception e) {

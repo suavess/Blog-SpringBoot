@@ -68,11 +68,7 @@ public class AdminCategoryController {
 
     @DeleteMapping("delCategory")
     @ResponseBody
-    public void delCategory(String id){
-        try {
-            articleCategoryService.delCategoryById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public String delCategory(String id){
+        return articleCategoryService.delCategoryById(id);
     }
 }

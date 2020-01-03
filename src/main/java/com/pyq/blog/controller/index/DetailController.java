@@ -22,7 +22,7 @@ public class DetailController {
             //查询该篇文章详情
             ArticleExt article = articleService.selectArticleById(id);
             //查询上一篇文章标题
-            String lastTitle = articleService.selectTitleById(String.valueOf(Integer.valueOf(id) + 1));
+            String lastTitle = articleService.selectTitleById(String.valueOf(Integer.valueOf(id) - 1));
             //查询下一篇文章标题
             String nextTitle = articleService.selectTitleById(String.valueOf(Integer.valueOf(id) + 1));
             model.addAttribute("lastTitle", lastTitle);

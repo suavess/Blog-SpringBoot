@@ -28,4 +28,7 @@ public interface ArticleCategoryMapper {
     @Delete("delete from article_category where id=#{id}")
     void delCategoryById(String id);
 
+    @Select("select count(1) from article where cate_id=#{id}")
+    Integer countArticleByCid(String id);
+
 }

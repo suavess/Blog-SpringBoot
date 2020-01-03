@@ -26,7 +26,6 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
         return categoryExtArrayList;
     }
 
-    @Transactional
     @Override
     public void addCategory(String cateName){
         articleCategoryMapper.addCategory(cateName);
@@ -37,16 +36,19 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
         return articleCategoryMapper.selectCategoryById(id);
     }
 
-    @Transactional
     @Override
     public void updateCategoryById(ArticleCategory articleCategory){
         articleCategoryMapper.updateCategoryById(articleCategory);
     }
 
-    @Transactional
     @Override
-    public void delCategoryById(String id){
+    public String delCategoryById(String id){
+        Integer count = articleCategoryMapper.countArticleByCid(id);
+        if (count>0){
+            return "false";
+        }
         articleCategoryMapper.delCategoryById(id);
+        return "true";
     }
 
 
